@@ -46,13 +46,12 @@ public class LinkList<C> implements Iterable<C> {
 	
 	/**
 	 * Adds a LinkNode to the start of the list
-	 * @param newNode
+	 * @param newNode - The node to add
 	 */
-	public void add(LinkNode<C> newNode) {
-		head = (head == null) ? newNode : null; // TODO
-		
+	public void add(LinkNode<C> newNode) {		
 		if (head == null) {
 			head = newNode;
+			last = newNode;
 		}
 		else {
 			newNode.setNext(head);
@@ -67,31 +66,62 @@ public class LinkList<C> implements Iterable<C> {
 	 * Inserts a LinkNode into the LinkedList
 	 * @param index - The index where the node will be inserted
 	 * @param newNode - The node to insert
+	 * @throws ArrayIndexOutOfBoundsException
 	 */
-	public void insert(int index, LinkNode<C> newNode) {
+	public void insert(int index, LinkNode<C> newNode) throws ArrayIndexOutOfBoundsException {
 		if (index < 0 || index > this.size) {
 			throw new ArrayIndexOutOfBoundsException("The index " + index + " doesn't exist in the list");
 		}
+
+		// TODO: Test index iteration
+		LinkNode<C> temp = getNode(index);
 		
-		LinkNode<C> temp = this.head;
-		int i = 0;
-		while (i < index) {
-			temp = temp.getNext();
-		}
-		
-		// TODO: Finish
-		
+		// Works for middle
 		if (temp != null) {
 			newNode.setPrevious(temp.getPrevious());
 			newNode.setNext(temp);
 			temp.setPrevious(newNode);
-			newNode.getPrevious().setNext(newNode);
+			if (index != 0) newNode.getPrevious().setNext(newNode); //TODO: Test index 0
+		}
+		else {
+			
 		}
 	}
 	
 	/**
+	 * Gets a node at a specific index
+	 * @param index - The index of the node to return
+	 * @return A LinkNode that's at at the index specified
+	 * @throws ArrayIndexOutOfBoundsException
+	 */
+	public LinkNode<C> getNode(int index) throws ArrayIndexOutOfBoundsException {
+		
+		LinkNode<C> node = head;
+		
+		// Iterates to the correct index from whichever side is closest
+		if (index < (this.size / 2)) {
+			// Iterates up from head
+			int i = 0;
+			while (i < index) {
+				node = node.getNext();
+				i++;
+			}
+		}
+		else {
+			// Iterates down from last
+			int i = this.size -1;
+			while (i > index) {
+				node = node.getPrevious();
+				i--;
+			}
+		}
+		
+		return node;
+	}
+	
+	/**
 	 * Removes a LinkNode from the list
-	 * @param index - The index to remove
+	 * @param index - The index of the LinkNode to remove
 	 */
 	public void remove(int index) throws ArrayIndexOutOfBoundsException {
 		if (index < 0 || index > this.size-1) {
