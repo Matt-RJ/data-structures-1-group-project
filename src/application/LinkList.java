@@ -45,7 +45,7 @@ public class LinkList<C> implements Iterable<C> {
 	// OTHER METHODS
 	
 	/**
-	 * Adds a LinkNode to the start of the list
+	 * Adds a LinkNode to the end of the list
 	 * @param newNode - The node to add
 	 */
 	public void add(LinkNode<C> newNode) {		
@@ -54,9 +54,9 @@ public class LinkList<C> implements Iterable<C> {
 			last = newNode;
 		}
 		else {
-			newNode.setNext(head);
-			head.setPrevious(newNode);
-			head = newNode;
+			last.setNext(newNode);
+			newNode.setPrevious(last);
+			last = newNode;
 		}
 		
 		this.size++;
@@ -70,13 +70,13 @@ public class LinkList<C> implements Iterable<C> {
 	 */
 	public void insert(int index, LinkNode<C> newNode) throws ArrayIndexOutOfBoundsException {
 		if (index < 0 || index > this.size) {
-			throw new ArrayIndexOutOfBoundsException("The index " + index + " doesn't exist in the list");
+			throw new ArrayIndexOutOfBoundsException("The index " + index + 
+													" doesn't exist in the list");
 		}
 
-		// TODO: Test index iteration
 		LinkNode<C> temp = getNode(index);
 		
-		// Works for middle
+		// Works for middle TODO: Test head and last
 		if (temp != null) {
 			newNode.setPrevious(temp.getPrevious());
 			newNode.setNext(temp);
@@ -92,27 +92,27 @@ public class LinkList<C> implements Iterable<C> {
 	 * Gets a node at a specific index
 	 * @param index - The index of the node to return
 	 * @return A LinkNode that's at at the index specified
-	 * @throws ArrayIndexOutOfBoundsException
+	 * @throws ArrayIndexOutOfBoundsException If the index doesn't exist in the list
 	 */
 	public LinkNode<C> getNode(int index) throws ArrayIndexOutOfBoundsException {
 		
-		LinkNode<C> node = head;
+		LinkNode<C> node;
 		
 		// Iterates to the correct index from whichever side is closest
 		if (index < (this.size / 2)) {
 			// Iterates up from head
+			node = head;
 			int i = 0;
-			while (i < index) {
+			while (i++ < index) {
 				node = node.getNext();
-				i++;
 			}
 		}
 		else {
 			// Iterates down from last
+			node = last;
 			int i = this.size -1;
-			while (i > index) {
+			while (i-- > index) {
 				node = node.getPrevious();
-				i--;
 			}
 		}
 		
@@ -122,26 +122,44 @@ public class LinkList<C> implements Iterable<C> {
 	/**
 	 * Removes a LinkNode from the list
 	 * @param index - The index of the LinkNode to remove
+	 * @throws ArrayIndexOutOfBoundsException If an index doesn't exist in the list
 	 */
 	public void remove(int index) throws ArrayIndexOutOfBoundsException {
 		if (index < 0 || index > this.size-1) {
-			throw new ArrayIndexOutOfBoundsException("The index " + index + " doesn't exist in the list");
+			throw new ArrayIndexOutOfBoundsException("The index " + index + 
+													" doesn't exist in the list");
 		}
 		
-		// TODO: Finish
-		LinkNode<C> temp = this.head;
-		int i = 0;
-		while (i < index) {
-			temp = temp.getNext();
-		}
+		LinkNode<C> temp = getNode(index);
+		
+		// TODO: Add removal
+		
 		
 		
 	}
 	
+	/**
+	 * Determines if the LinkList contains a certain node
+	 * @param soughtNode - The node to look for
+	 * @return True if the node is in the list, false otherwise
+	 */
+	public boolean contains(LinkNode<C> soughtNode) {
+		
+		LinkNode<C> temp = head;
+		
+		while (temp != null) {
+			if (temp.equals(soughtNode)) {
+				return true;
+			}
+			temp = temp.getNext();
+		}
+		return false;
+	}
+	
+	
 	@Override
 	public Iterator<C> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkIterator<C>(head);
 	}
 
 }
