@@ -1,6 +1,7 @@
 package application.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ public class LinkListTest {
 	LinkNode<String> node5;
 	
 	@BeforeEach public void setup() {
+		
 		myList = new LinkList<>();
 		
 		node1 = new LinkNode<>("First node");
@@ -31,6 +33,7 @@ public class LinkListTest {
 		node3 = new LinkNode<>("Third node");
 		node4 = new LinkNode<>("Fourth node");
 		node5 = new LinkNode<>("Fifth node");
+		
 	}
 	
 	@AfterEach public void reset() {
@@ -73,6 +76,7 @@ public class LinkListTest {
 	}
 	
 	@Test public void containsTest() {
+		
 		myList.add(node1);
 
 		myList.add(node3);
@@ -88,10 +92,68 @@ public class LinkListTest {
 	}
 	
 	@Test public void removeTest() {
-		// TODO
+		
+		myList.add(node1);
+		myList.add(node2);
+		myList.add(node3);
+		myList.add(node4);
+		myList.add(node5);
+		
+		assertThrows(ArrayIndexOutOfBoundsException.class,() -> myList.remove(-1));
+		assertThrows(ArrayIndexOutOfBoundsException.class,() -> myList.remove(5));
+		
+		myList.remove(0);
+		assertEquals(myList.getNode(0).getPrevious(),null);
+		
+		myList.remove(3);
+		assertEquals(myList.getNode(2).getNext(),null);
+		
+		myList.remove(0);
+		myList.remove(0);
+		myList.remove(0);
+		
+		assertThrows(ArrayIndexOutOfBoundsException.class,() -> myList.remove(0));
+		
 	}
 	
 	@Test public void sizeTest() {
-		// TODO
+		
+		assertEquals(myList.getSize(),0);
+		myList.add(node1);
+		assertEquals(myList.getSize(),1);
+		myList.add(node2);
+		assertEquals(myList.getSize(),2);
+		myList.add(node3);
+		assertEquals(myList.getSize(),3);
+		myList.add(node4);
+		assertEquals(myList.getSize(),4);
+		myList.add(node5);
+		
+		myList.remove(0);
+		assertEquals(myList.getSize(),4);
+		myList.remove(0);
+		assertEquals(myList.getSize(),3);
+		myList.remove(0);
+		assertEquals(myList.getSize(),2);
+		myList.remove(0);
+		assertEquals(myList.getSize(),1);
+		myList.remove(0);
+		assertEquals(myList.getSize(),0);
+		
 	}
+	
+	@Test public void insertTest() {
+		
+		myList.add(node1);
+		myList.insert(0,node2);
+		assertEquals(node1.getNext(),node2);
+		assertEquals(node2.getNext(),null);
+		assertEquals(node1.getPrevious(), null);
+		assertEquals(node2.getPrevious(), node1);
+		
+		assertEquals(myList.getHead(),node1);
+		assertEquals(myList.getLast(),node2);
+		
+	}
+	
 }

@@ -40,6 +40,12 @@ public class LinkList<C> implements Iterable<C> {
 	public void setLast(LinkNode<C> newLast) {
 		this.last = newLast;
 	}
+	public int getSize() {
+		return this.size;
+	}
+	public void setSize(int newSize) {
+		this.size = newSize;
+	}
 	
 	
 	// OTHER METHODS
@@ -63,28 +69,49 @@ public class LinkList<C> implements Iterable<C> {
 	}
 	
 	/**
-	 * Inserts a LinkNode into the LinkedList
-	 * @param index - The index where the node will be inserted
+	 * Adds a node to the start of the list
+	 * @param newNode - The node to add
+	 */
+	public void addfirst(LinkNode<C> newNode) {
+		if (head != null) {
+			head.setPrevious(newNode);
+			newNode.setNext(head);
+			head = newNode;
+		}
+		else {
+			head = newNode;
+			last = newNode;
+		}
+	}
+	
+	/**
+	 * Inserts a LinkNode into the LinkedList after another node
+	 * @param index - The index of the node before the insertion point
 	 * @param newNode - The node to insert
 	 * @throws ArrayIndexOutOfBoundsException
 	 */
 	public void insert(int index, LinkNode<C> newNode) throws ArrayIndexOutOfBoundsException {
-		if (index < 0 || index > this.size) {
-			throw new ArrayIndexOutOfBoundsException("The index " + index + 
-													" doesn't exist in the list");
+		if (index < 0 || index > this.size-1) {
+			throw new ArrayIndexOutOfBoundsException("There is no node at index " + index + 
+													" within the list.");
 		}
 
 		LinkNode<C> temp = getNode(index);
 		
-		// Works for middle TODO: Test head and last
+		// TODO: Test
+		
 		if (temp != null) {
-			newNode.setPrevious(temp.getPrevious());
-			newNode.setNext(temp);
-			temp.setPrevious(newNode);
-			if (index != 0) newNode.getPrevious().setNext(newNode); //TODO: Test index 0
-		}
-		else {
+			newNode.setPrevious(temp);
+			if (temp.getNext() != null) {
+				newNode.setNext(temp.getNext());
+				temp.getNext().setPrevious(newNode);
+			}
+			else {
+				last = newNode;
+			}
+			temp.setNext(newNode);
 			
+			this.size++;
 		}
 	}
 	
@@ -132,9 +159,20 @@ public class LinkList<C> implements Iterable<C> {
 		
 		LinkNode<C> temp = getNode(index);
 		
-		// TODO: Add removal
+		if (index == 0) {
+			head = temp.getNext();
+			if (head != null) head.setPrevious(null);
+		}
+		else if (index == size-1) {
+			last = temp.getPrevious();
+			last.setNext(null);
+		}
+		else {
+			temp.getPrevious().setNext(temp.getNext());
+			temp.getNext().setPrevious(temp.getPrevious());
+		}
 		
-		
+		this.size--;
 		
 	}
 	
