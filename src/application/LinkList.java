@@ -98,9 +98,8 @@ public class LinkList<C> implements Iterable<C> {
 
 		LinkNode<C> temp = getNode(index);
 		
-		// TODO: Test
-		
 		if (temp != null) {
+
 			newNode.setPrevious(temp);
 			if (temp.getNext() != null) {
 				newNode.setNext(temp.getNext());
@@ -110,9 +109,10 @@ public class LinkList<C> implements Iterable<C> {
 				last = newNode;
 			}
 			temp.setNext(newNode);
-			
+
 			this.size++;
 		}
+		
 	}
 	
 	/**
