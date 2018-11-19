@@ -76,16 +76,23 @@ public class LinkList<C> implements Iterable<C> {
 
 		LinkNode<C> temp = getNode(index);
 		
-		// Works for middle TODO: Test head and last
 		if (temp != null) {
 			newNode.setPrevious(temp.getPrevious());
 			newNode.setNext(temp);
 			temp.setPrevious(newNode);
-			if (index != 0) newNode.getPrevious().setNext(newNode); //TODO: Test index 0
-		}
-		else {
+			
+			if (index != 0) {
+				this.head = newNode; // TODO: Test index 0
+			}
+			else if (index == this.size){
+				this.last = newNode; // TODO: Test last index
+			}
+			else {
+				newNode.getPrevious().setNext(newNode); //TODO: Test other indices
+			}
 			
 		}
+		
 	}
 	
 	/**
