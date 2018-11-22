@@ -8,9 +8,13 @@ package application;
  */
 public class Hashing<E> {
 	
-	@SuppressWarnings("unchecked")
-	private LinkList<E>[] hashTable = (LinkList<E>[]) new Object [50];
+	private LinkList<E>[] hashTable;
 	
+
+	@SuppressWarnings("unchecked")
+	public Hashing(int size) {
+		hashTable = (LinkList<E>[]) new Object [size];
+	}
 	
 	public LinkList<E>[] getTable() {
 		return hashTable;

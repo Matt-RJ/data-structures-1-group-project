@@ -34,4 +34,36 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	
+	// TODO
+	// BOOKS
+	
+	public void addBook() {
+		
+	}
+	
+	public void updateBook() {
+		
+	}
+	
+	public void removeBook() {
+		
+	}
+	
+	
+	// CHARACTERS
+	
+	public void addCharacter() {
+		
+	}
+	
+	public void updateCharacter() {
+		
+	}
+	
+	public void removeCharacter() {
+		
+	}
+	
 }
