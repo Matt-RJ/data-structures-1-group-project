@@ -17,7 +17,6 @@ public class LinkList<C> implements Iterable<C> {
 	private LinkNode<C> last = null;
 	private int size;
 	
-	
 	// CONSTRUCTORS
 	
 	public LinkList() {

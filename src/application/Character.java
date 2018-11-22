@@ -10,10 +10,10 @@ public class Character {
 	
 	// FIELDS
 	
-	private String name = "";	// The character's name
-	private String gender = "";		// The character's gender
-	private int age = 0;		// The character's age (years)
-	
+	private String name = "";
+	private String gender = "";
+	private int age = 0;			 // Age in years
+	private String description = ""; // The character's description
 	
 	// CONSTRUCTORS
 	
@@ -52,6 +52,14 @@ public class Character {
 
 	public void setAge(int age) {
 		if (age >= 0) this.age = age;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
