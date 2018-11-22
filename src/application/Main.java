@@ -7,6 +7,17 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	
+	/**
+	 * TODO:
+	 *	- Add hashing overall
+	 *		- Add hash tables (Where the books and characters are stored)
+	 *		- Add hash methods to return an int of where each book/char go in the table
+	 *		- Add collision resolution to the hash tables 
+	 *
+	 */
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
