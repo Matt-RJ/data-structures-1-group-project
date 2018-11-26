@@ -2,7 +2,6 @@ package application;
 
 public class Book {
 	
-	
 	// FIELDS
 	
 	private String title = "";				// The title of the book
@@ -78,6 +77,5 @@ public class Book {
 	public void setCoverImage(String coverImage) {
 		this.coverImage = coverImage;
 	}
-	
-	
+
 }

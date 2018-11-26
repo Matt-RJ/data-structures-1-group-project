@@ -8,6 +8,11 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	
+	// Hash table for books
+	public static Hashing<Book> bookHash = new Hashing<>(25);
+	// Hash table for characters
+	public static Hashing<Character> characterHash = new Hashing<>(25);
+	
 	/**
 	 * TODO:
 	 *	- Add hashing overall
