@@ -4,6 +4,7 @@ public class Book {
 	
 	// FIELDS
 	
+	private int ID = 0;
 	private String title = "";				// The title of the book
 	private String author = "";				// The author of the book
 	private int yearOfPublication = 1900;	// The year the book was first published
@@ -19,6 +20,20 @@ public class Book {
 		
 	}
 	
+	public Book(String title) {
+		this.title = title;
+	}
+	
+	/**
+	 * 
+	 * @param title - The title of the book
+	 * @param author - The author's full name
+	 * @param pubYear - The year it was published
+	 * @param pageNum - The number of pages
+	 * @param genre - Genre of the story
+	 * @param plotDesc - A brief plot description
+	 * @param coverImg - A URL to an image of the book's cover
+	 */
 	public Book(String title, String author, int pubYear, int pageNum,
 			String genre, String plotDesc, String coverImg) {
 		

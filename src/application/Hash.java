@@ -34,7 +34,6 @@ public class Hash<E> {
 	 * @return The load factor of the current hash table
 	 */
 	public double getLoadFactor() {
-		double lf = 0.0;
 		double slotsFull = 0.0;
 		
 		for (LinkList<E> l : hashTable) {
@@ -70,7 +69,37 @@ public class Hash<E> {
 		return location;
 	}
 	
+	/**
+	 * Removes an object from the hash table
+	 * @param toRemove
+	 */
+	public void remove(E toRemove) {
+		// TODO: Test
+		int location = hash(toRemove);
+		int i = 0;
+		for (E item : hashTable[location]) {
+			if (item.equals(toRemove)) {
+				hashTable[location].remove(i);
+			}
+			i++;
+		}
+	}
+	
 	// TODO: Add way to get objects from hash table
+	
+	/**
+	 * TODO
+	 * @return
+	 */
+	public E get() {
+		E objectToReturn = null;
+		
+		// 1. Get the key of the item you want (Or other property)
+		// 2. Get the correct bucket
+		// 3. Iterate through the LinkList until the right item is found
+		
+		return objectToReturn;
+	}
 	
 	/**
 	 * Rehashes the hash table with a double hash table size
