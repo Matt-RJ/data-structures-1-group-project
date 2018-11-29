@@ -9,9 +9,9 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	
 	// Hash table for books
-	public static Hashing<Book> bookHash = new Hashing<>(25);
+	public static Hash<Book> bookHash = new Hash<>(25);
 	// Hash table for characters
-	public static Hashing<Character> characterHash = new Hashing<>(25);
+	public static Hash<Character> characterHash = new Hash<>(25);
 	
 	/**
 	 * TODO:
@@ -31,6 +31,9 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			System.out.println(bookHash.getHashTable().length);
+			System.out.println(bookHash.getLoadFactor());
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -5,20 +5,20 @@ package application;
  * Its hash table uses separate chaining for collision resolution.
  * @author Mantas Rajackas
  *
- * @param <E>
+ * @param <E> - The object being stored in the hash table
  */
-public class Hashing<E> {
+public class Hash<E> {
 	
 	private LinkList<E>[] hashTable;
 
 	@SuppressWarnings("unchecked")
-	public Hashing(int size) {
+	public Hash(int size) {
 		// Creates a hashTable of the correct size when instantiating
-		hashTable = (LinkList<E>[]) new Object [size];
+		hashTable = new LinkList[size];
 		
-		// Inserts a 
-		for (int i = 0; i < hashTable.length; i++) {
-			hashTable[i] = new LinkList<E>();
+		// Fills the hash table with empty LinkLists
+		for (int i = 0; i < size; i++) {
+			hashTable[i] = new LinkList<>();
 		}
 	}
 	
@@ -33,16 +33,20 @@ public class Hashing<E> {
 	 * Determines how full the hash table is - 0.0 is empty, 1.0 is full
 	 * @return The load factor of the current hash table
 	 */
-	public float getLoadFactor() {
-		float lf = 0.0f;
-		int slotsFull = 0;
+	public double getLoadFactor() {
+		double lf = 0.0;
+		double slotsFull = 0.0;
 		
 		for (LinkList<E> l : hashTable) {
 			if (l.getHead() != null) slotsFull += 1;
 		}
 		
-		lf = slotsFull / hashTable.length;
-		return lf;
+		try {
+			return slotsFull / hashTable.length;
+		}
+		catch (ArithmeticException e) {
+			return 0; // If the hashTable length is 0
+		}
 	}
 	
 	/**
