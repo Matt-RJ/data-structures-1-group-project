@@ -39,11 +39,11 @@ public class Library {
 	public void setSavedCurrentCharacterID(int savedCurrentCharacterID) {
 		this.savedCurrentCharacterID = savedCurrentCharacterID;
 	}
-	public Hash<Book> getSavedBookHsh() {
+	public Hash<Book> getSavedBookHash() {
 		return savedBookHash;
 	}
-	public void setSavedBookHsh(Hash<Book> savedBookHsh) {
-		this.savedBookHash = savedBookHsh;
+	public void setSavedBookHash(Hash<Book> savedBookHash) {
+		this.savedBookHash = savedBookHash;
 	}
 	public Hash<Character> getSavedCharacterHash() {
 		return savedCharacterHash;

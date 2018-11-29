@@ -22,6 +22,10 @@ public class Hash<E> {
 		}
 	}
 	
+	public Hash() {
+		// Only to be used for saving/loading
+	}
+	
 	public LinkList<E>[] getHashTable() {
 		return hashTable;
 	}

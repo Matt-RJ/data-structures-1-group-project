@@ -31,6 +31,28 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
+		Book book1 = new Book("The Martian");
+		Book book2 = new Book("Harry Potter");
+		Book book3 = new Book("Artemis");
+		Book book4 = new Book("The Great Gatsby");
+		Book book5 = new Book("Moby Dick");
+		Book book6 = new Book("Hamlet");
+		
+		Library.bookHash.add(book1);
+		Library.bookHash.add(book2);
+		Library.bookHash.add(book3);
+		Library.bookHash.add(book4);
+		Library.bookHash.add(book5);
+		Library.bookHash.add(book6);
+		
+		try {
+			save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		launch(args);
 	}
 	
@@ -76,29 +98,19 @@ public class Main extends Application {
 	// MISCELLANEOUS
 	
 	/**
-	 * Saves the current restaurant configuration to an XML file
+	 * Saves the current library configuration to an XML file
 	 * @throws IOException
 	 */
 	public static void save() throws IOException {
-		// Getting non-static variables ready for saving
-		/*
-		restaurant.setSavedTableList(Restaurant.getTableList());
-		restaurant.setSavedRestaurantMenuList(Restaurant.getRestaurantMenuList());
-		
-		private int savedCurrentBookID;
-		private int savedCurrentCharacterID;
-		private Hash<Book> savedBookHsh;
-		private Hash<Character> savedCharacterHash;
-		private Book[] savedSortedBooks;
-		private Character[] savedSortedCharacters;
-		*/
-		
+		// Prepares the variables to save
 		library.setSavedCurrentBookID(Library.currentBookID);
 		library.setSavedCurrentCharacterID(Library.currentCharacterID);
+		library.setSavedBookHash(Library.bookHash);
+		library.setSavedCharacterHash(Library.characterHash);
+		library.setSavedSortedBooks(Library.sortedBooks);
+		library.setSavedSortedCharacters(Library.sortedCharacters);
 		
 		
-		
-		// Saving non-static variables
 		FileOutputStream fos = new FileOutputStream(new File("./library.xml"));
 		XMLEncoder encoder = new XMLEncoder(fos);
 		encoder.writeObject(library);
@@ -107,17 +119,22 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Loads the restaurant configuration from an XML file
+	 * Loads the library configuration from an XML file
 	 * @throws IOException
 	 */
 	public static void load() throws IOException {
-		FileInputStream fis = new FileInputStream(new File("./restaurant.xml"));
+		FileInputStream fis = new FileInputStream(new File("./library.xml"));
 		XMLDecoder decoder = new XMLDecoder(fis);
 		
-		// Loading restaurant from XML and replacing the Restaurant class variables
-		Restaurant tempRestaurant = (Restaurant) decoder.readObject();
-		Restaurant.setTableList(tempRestaurant.getSavedTableList());
-		Restaurant.setRestaurantMenuList(tempRestaurant.getSavedRestaurantMenuList());
+		// Loading library from XML and replacing the static Library class variables
+		Library tempLibrary = (Library) decoder.readObject();
+		
+		Library.currentBookID = tempLibrary.getSavedCurrentBookID();
+		Library.currentCharacterID = tempLibrary.getSavedCurrentCharacterID();
+		Library.bookHash = tempLibrary.getSavedBookHash();
+		Library.characterHash = tempLibrary.getSavedCharacterHash();
+		Library.sortedBooks = tempLibrary.getSavedSortedBooks();
+		Library.sortedCharacters = tempLibrary.getSavedSortedCharacters();
 		
 		decoder.close();
 		fis.close();
