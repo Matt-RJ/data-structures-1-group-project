@@ -17,6 +17,7 @@ public class LinkList<C> implements Iterable<C> {
 	private LinkNode<C> last = null;
 	private int size;
 	
+	
 	// CONSTRUCTORS
 	
 	public LinkList() {
@@ -32,7 +33,6 @@ public class LinkList<C> implements Iterable<C> {
 	public void setHead(LinkNode<C> newHead) {
 		this.head = newHead;
 	}
-	
 	public LinkNode<C> getLast() {
 		return this.last;
 	}
@@ -71,7 +71,7 @@ public class LinkList<C> implements Iterable<C> {
 	 * Adds a node to the start of the list
 	 * @param newNode - The node to add
 	 */
-	public void addfirst(LinkNode<C> newNode) {
+	public void addFirst(LinkNode<C> newNode) {
 		if (head != null) {
 			head.setPrevious(newNode);
 			newNode.setNext(head);
@@ -112,6 +112,19 @@ public class LinkList<C> implements Iterable<C> {
 			this.size++;
 		}
 		
+	}
+	
+	/**
+	 * Converts the LinkList into an array of LinkNode objects
+	 * @return - An array of LinkNode objects
+	 */
+	@SuppressWarnings("unchecked")
+	public LinkNode<C>[] toArray() {
+		LinkNode<C>[] array = new LinkNode[this.getSize()];
+		for (int i = 0; i < this.getSize(); i++) {
+			array[i] = this.getNode(i);
+		}
+		return array;
 	}
 	
 	/**

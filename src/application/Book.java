@@ -4,7 +4,7 @@ public class Book {
 	
 	// FIELDS
 	
-	private int ID = 0;
+	private int ID = 0;						// A unique ID for the book
 	private String title = "";				// The title of the book
 	private String author = "";				// The author of the book
 	private int yearOfPublication = 1900;	// The year the book was first published
@@ -37,6 +37,9 @@ public class Book {
 	public Book(String title, String author, int pubYear, int pageNum,
 			String genre, String plotDesc, String coverImg) {
 		
+		this.ID = Library.currentBookID;
+		Library.currentBookID++;
+
 		this.title = title;
 		this.author = author;
 		this.yearOfPublication = pubYear;
@@ -50,6 +53,14 @@ public class Book {
 	
 	// GETTERS / SETTERS
 	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	public String getTitle() {
 		return title;
 	}

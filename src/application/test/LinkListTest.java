@@ -37,7 +37,7 @@ public class LinkListTest {
 	}
 	
 	@AfterEach public void reset() {
-		
+		myList = new LinkList<>();
 	}
 	
 	@Test public void addTest() {
@@ -153,6 +153,23 @@ public class LinkListTest {
 		
 		assertEquals(myList.getHead(),node1);
 		assertEquals(myList.getLast(),node2);
+		
+	}
+	
+	@Test public void toArrayTest() {
+		
+		myList.add(node1);
+		myList.add(node2);
+		myList.add(node3);
+		myList.add(node4);
+		myList.add(node5);
+		LinkNode<String>[] stringArray = myList.toArray();
+		
+		assertEquals(stringArray[0].getContents(),"First node");
+		assertEquals(stringArray[1].getContents(),"Second node");
+		assertEquals(stringArray[2].getContents(),"Third node");
+		assertEquals(stringArray[3].getContents(),"Fourth node");
+		assertEquals(stringArray[4].getContents(),"Fifth node");
 		
 	}
 	

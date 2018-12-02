@@ -9,7 +9,8 @@ package application;
  */
 public class Hash<E> {
 	
-	private LinkList<E>[] hashTable;
+	@SuppressWarnings("unchecked")
+	private LinkList<E>[] hashTable = new LinkList[1];
 
 	@SuppressWarnings("unchecked")
 	public Hash(int size) {
@@ -23,7 +24,7 @@ public class Hash<E> {
 	}
 	
 	public Hash() {
-		// Only to be used for saving/loading
+		
 	}
 	
 	public LinkList<E>[] getHashTable() {
@@ -108,8 +109,16 @@ public class Hash<E> {
 	/**
 	 * Rehashes the hash table with a double hash table size
 	 */
+	@SuppressWarnings("unchecked")
 	public void reHash() {
 		// TODO
+		
+		LinkList<E>[] newHashTable = new LinkList[hashTable.length * 2];
+		
+		for (LinkList<E> list : hashTable) {
+			
+		}
+		
 	}
 	
 	

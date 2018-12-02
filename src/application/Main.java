@@ -15,6 +15,17 @@ import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	
+	/*
+	 * TODO
+	 *  - Create a swap method in LinkList (PRIORITY)
+	 * 	- Make Books comparable
+	 *  - Make Characters comparable
+	 *  - Add generic sorting
+	 * 
+	 * 
+	 * 
+	 */
+	
 	static Library library = new Library();
 	
 	@Override
@@ -32,26 +43,35 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		Book book1 = new Book("The Martian");
-		Book book2 = new Book("Harry Potter");
-		Book book3 = new Book("Artemis");
-		Book book4 = new Book("The Great Gatsby");
-		Book book5 = new Book("Moby Dick");
-		Book book6 = new Book("Hamlet");
+		LinkList<String> stringList = new LinkList<>();
+		LinkList<Book> bookList = new LinkList<>();
 		
-		Library.bookHash.add(book1);
-		Library.bookHash.add(book2);
-		Library.bookHash.add(book3);
-		Library.bookHash.add(book4);
-		Library.bookHash.add(book5);
-		Library.bookHash.add(book6);
+		stringList = new LinkList<>();
+		stringList.add(new LinkNode<String>("The"));
+		stringList.add(new LinkNode<String>("quick"));
+		stringList.add(new LinkNode<String>("brown"));
+		stringList.add(new LinkNode<String>("fox"));
+		stringList.add(new LinkNode<String>("jumps"));
+		stringList.add(new LinkNode<String>("over"));
+		stringList.add(new LinkNode<String>("the"));
+		stringList.add(new LinkNode<String>("lazy"));
+		stringList.add(new LinkNode<String>("dog"));
 		
-		try {
-			save();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		bookList = new LinkList<>();
+		bookList.add(new LinkNode<Book>(new Book("The Martian")));
+		bookList.add(new LinkNode<Book>(new Book("The Great Gatsby")));
+		bookList.add(new LinkNode<Book>(new Book("Hamlet")));
+		bookList.add(new LinkNode<Book>(new Book("Life of Pi")));
+		bookList.add(new LinkNode<Book>(new Book("Wonder")));
+		bookList.add(new LinkNode<Book>(new Book("Death and Nightingales")));
+		bookList.add(new LinkNode<Book>(new Book("To Kill a Mockingbird")));
+		bookList.add(new LinkNode<Book>(new Book("Catch 22")));
+		bookList.add(new LinkNode<Book>(new Book("1984")));
+		
+		
+		Sort<Book> sort = new Sort<>(bookList.toArray());
+		// (a,b) -> a.getContents().getAuthor().compareTo(b.getContents().getAuthor()
+		
 		
 		launch(args);
 	}
