@@ -120,10 +120,13 @@ public class LinkList<C> implements Iterable<C> {
 	 */
 	@SuppressWarnings("unchecked")
 	public LinkNode<C>[] toArray() {
+		
 		LinkNode<C>[] array = new LinkNode[this.getSize()];
+		
 		for (int i = 0; i < this.getSize(); i++) {
 			array[i] = this.getNode(i);
 		}
+		
 		return array;
 	}
 	

@@ -14,18 +14,7 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
-	
-	/*
-	 * TODO
-	 *  - Create a swap method in LinkList (PRIORITY)
-	 * 	- Make Books comparable
-	 *  - Make Characters comparable
-	 *  - Add generic sorting
-	 * 
-	 * 
-	 * 
-	 */
-	
+		
 	static Library library = new Library();
 	
 	@Override
@@ -69,9 +58,16 @@ public class Main extends Application {
 		bookList.add(new LinkNode<Book>(new Book("1984")));
 		
 		
-		Sort<Book> sort = new Sort<>(bookList.toArray());
-		// (a,b) -> a.getContents().getAuthor().compareTo(b.getContents().getAuthor()
+		Sort<Book> sort = new Sort<>();
+		sort.setSortArray(bookList.toArray());
 		
+		sort.mergeSort(sort.getSortArray(), (a,b) -> a.getContents().getAuthor().compareTo(b.getContents().getAuthor()));
+		
+		for (int i = 0; i < sort.getSortArray().length; i++) {
+			
+			System.out.println(sort.getSortArray()[i].getContents().getTitle());
+			
+		}
 		
 		launch(args);
 	}

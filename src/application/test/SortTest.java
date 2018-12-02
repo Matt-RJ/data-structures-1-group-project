@@ -1,7 +1,5 @@
 package application.test;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,13 +49,7 @@ public class SortTest {
 	@Test
 	public void mergeSortTest() {
 		
-		
-		
-		LinkNode<Book>[] toSort = bookList.toArray();
-		
-		Sort<Book> sort = new Sort<>(bookList.toArray());
-		sort.mergeSort(toSort, (a,b) -> a.getContents().getAuthor().compareTo(b.getContents().getAuthor()));
-		
+		// TODO
 		
 	}
 	

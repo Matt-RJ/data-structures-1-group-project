@@ -10,7 +10,7 @@ import java.util.Comparator;
  */
 public class Sort<C> {
 	
-	private C[] sortArray;
+	private LinkNode<C>[] sortArray;
 	
 	public Sort() {
 		
@@ -18,14 +18,15 @@ public class Sort<C> {
 	
 	@SuppressWarnings("unchecked")
 	public Sort(Object[] sortArray) {
-		this.sortArray = (C[]) new Object[sortArray.length];
+		this.sortArray = new LinkNode[sortArray.length];
+		
 	}
 	
-	public C[] getSortArray() {
+	public LinkNode<C>[] getSortArray() {
 		return sortArray;
 	}
 
-	public void setSortArray(C[] sortArray) {
+	public void setSortArray(LinkNode<C>[] sortArray) {
 		this.sortArray = sortArray;
 	}
 
@@ -48,13 +49,13 @@ public class Sort<C> {
 			// Copying to sublists from the starting list
 			int i;
 			for (i = 0; i<x; i++) {
-				xa[i] = nodes[i];
+				xa[i] = nodes[i]; // TODO: Fix - xa[i] stays as null
 			}
 			for (int i2 = 0; i2 < y; i2++,i++) {
 				ya[i2] = nodes[i];
 			}
 			
-			// mergeSort recursive calls
+			// Recursive calls
 			mergeSort(xa,comp);
 			mergeSort(ya,comp);
 			
@@ -64,7 +65,7 @@ public class Sort<C> {
 			int yai = 0;
 			while (xai < xa.length && yai<ya.length) {
 								// TODO: Make sure the below is correct
-				nodes[i++] = ( (comp.compare(xa[xai], ya[yai]) < 1) ? xa[xai++] : ya[yai++]);
+				nodes[i++] = ( (comp.compare(xa[xai], ya[yai]) > 1) ? xa[xai++] : ya[yai++]);
 			}
 			while (xai < xa.length) {
 				nodes[i++] = xa[xai++];
@@ -74,6 +75,13 @@ public class Sort<C> {
 			}
 			
 		}
+		
+			for (int i = 0; i < sortArray.length; i++) {
+			
+			System.out.println(((Book) sortArray[i].getContents()).getTitle());
+			
+			}
+			System.out.println("\n");
 		
 	}
 	
