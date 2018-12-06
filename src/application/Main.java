@@ -33,6 +33,11 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		try {
+			load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		launch(args);
 	}
 	
@@ -46,6 +51,7 @@ public class Main extends Application {
 	 */
 	public static void addBook(Book book) {
 		Library.bookHash.add(book);
+		System.out.println("Book with the name " + book.getTitle() + " added.");
 	}
 	
 	public static void updateBook() {
@@ -64,7 +70,7 @@ public class Main extends Application {
 	 * @param character - The character to add.
 	 */
 	public static void addCharacter(Character character) {
-		
+		Library.characterHash.add(character);
 	}
 	
 	public static void updateCharacter() {
@@ -118,5 +124,18 @@ public class Main extends Application {
 		
 		decoder.close();
 		fis.close();
+	}
+	
+	/**
+	 * Saves the current Library setup and exits the program.
+	 */
+	public static void exitProgram() {
+		try {
+			save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.exit(0);
 	}
 }

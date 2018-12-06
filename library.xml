@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_191" class="java.beans.XMLDecoder">
+<java version="1.8.0_171" class="java.beans.XMLDecoder">
  <object class="application.Library">
   <void property="savedBookHash">
    <object class="application.Hash">
@@ -9,25 +9,7 @@
        <object class="application.LinkList"/>
       </void>
       <void index="1">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode0">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>Artemis</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode0"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="2">
        <object class="application.LinkList"/>
@@ -51,25 +33,7 @@
        <object class="application.LinkList"/>
       </void>
       <void index="9">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode1">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>Moby Dick</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode1"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="10">
        <object class="application.LinkList"/>
@@ -78,25 +42,7 @@
        <object class="application.LinkList"/>
       </void>
       <void index="12">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode2">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>Hamlet</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode2"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="13">
        <object class="application.LinkList"/>
@@ -117,73 +63,19 @@
        <object class="application.LinkList"/>
       </void>
       <void index="19">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode3">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>Harry Potter</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode3"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="20">
        <object class="application.LinkList"/>
       </void>
       <void index="21">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode4">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>The Great Gatsby</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode4"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="22">
        <object class="application.LinkList"/>
       </void>
       <void index="23">
-       <object class="application.LinkList">
-        <void property="head">
-         <object class="application.LinkNode" id="LinkNode5">
-          <void property="contents">
-           <object class="application.Book">
-            <void property="title">
-             <string>The Martian</string>
-            </void>
-           </object>
-          </void>
-         </object>
-        </void>
-        <void property="last">
-         <object idref="LinkNode5"/>
-        </void>
-        <void property="size">
-         <int>1</int>
-        </void>
-       </object>
+       <object class="application.LinkList"/>
       </void>
       <void index="24">
        <object class="application.LinkList"/>

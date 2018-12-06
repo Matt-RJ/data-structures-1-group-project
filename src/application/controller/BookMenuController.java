@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class BookMenuController {
+public class BookMenuController extends SuperController {
 	
 	// Adding a new book to the system
 	@FXML private TextField newTitle;
@@ -18,7 +18,6 @@ public class BookMenuController {
 	@FXML private TextField newPlotDescription;
 	@FXML private TextField newCoverImage;
 	@FXML private Button addBook;
-	
 	
 	
 	@FXML
@@ -35,6 +34,8 @@ public class BookMenuController {
 								  genre, plotDesc, coverImg);
 		
 		Main.addBook(bookToAdd);
+		
+		System.out.println("Book added.");
 		
 	}
 	
