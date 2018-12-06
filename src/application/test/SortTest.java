@@ -49,7 +49,16 @@ public class SortTest {
 	@Test
 	public void mergeSortTest() {
 		
-		// TODO
+		Sort<Book> sort = new Sort<Book>(bookList.toArray());
+		
+		sort.mergeSort(sort.getSortArray(),
+				(a,b) -> a.getContents().getTitle().compareTo(b.getContents().getTitle()));
+		
+		LinkList<Book> sortedBookList = new LinkList<>();
+		
+		for (LinkNode<Book> n : sort.getSortArray()) {
+			sortedBookList.add(n);
+		}
 		
 	}
 	

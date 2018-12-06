@@ -8,7 +8,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
@@ -20,8 +22,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
+			Parent root = FXMLLoader.load(getClass().getResource("scene/MainMenu.fxml"));
+			Scene scene = new Scene(root,1280,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -31,44 +33,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		
-		LinkList<String> stringList = new LinkList<>();
-		LinkList<Book> bookList = new LinkList<>();
-		
-		stringList = new LinkList<>();
-		stringList.add(new LinkNode<String>("The"));
-		stringList.add(new LinkNode<String>("quick"));
-		stringList.add(new LinkNode<String>("brown"));
-		stringList.add(new LinkNode<String>("fox"));
-		stringList.add(new LinkNode<String>("jumps"));
-		stringList.add(new LinkNode<String>("over"));
-		stringList.add(new LinkNode<String>("the"));
-		stringList.add(new LinkNode<String>("lazy"));
-		stringList.add(new LinkNode<String>("dog"));
-		
-		bookList = new LinkList<>();
-		bookList.add(new LinkNode<Book>(new Book("The Martian")));
-		bookList.add(new LinkNode<Book>(new Book("The Great Gatsby")));
-		bookList.add(new LinkNode<Book>(new Book("Hamlet")));
-		bookList.add(new LinkNode<Book>(new Book("Life of Pi")));
-		bookList.add(new LinkNode<Book>(new Book("Wonder")));
-		bookList.add(new LinkNode<Book>(new Book("Death and Nightingales")));
-		bookList.add(new LinkNode<Book>(new Book("To Kill a Mockingbird")));
-		bookList.add(new LinkNode<Book>(new Book("Catch 22")));
-		bookList.add(new LinkNode<Book>(new Book("1984")));
-		
-		
-		Sort<Book> sort = new Sort<>();
-		sort.setSortArray(bookList.toArray());
-		
-		sort.mergeSort(sort.getSortArray(), (a,b) -> a.getContents().getAuthor().compareTo(b.getContents().getAuthor()));
-		
-		for (int i = 0; i < sort.getSortArray().length; i++) {
-			
-			System.out.println(sort.getSortArray()[i].getContents().getTitle());
-			
-		}
-		
 		launch(args);
 	}
 	

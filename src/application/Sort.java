@@ -10,7 +10,7 @@ import java.util.Comparator;
  */
 public class Sort<C> {
 	
-	private LinkNode<C>[] sortArray;
+	private LinkNode<C>[] sortArray; // The array that mergeSort() sorts
 	
 	public Sort() {
 		
@@ -31,25 +31,26 @@ public class Sort<C> {
 	}
 
 	/**
-	 * 
-	 * @param nodes
-	 * @param comp
+	 * Sorts the instance's sortArray using MergeSort
+	 * @param nodes - The array of LinkNode objects to sort
+	 * @param comp - The Comparator object for node comparison
 	 */
 	@SuppressWarnings({ "unchecked" })
 	public void mergeSort(LinkNode<C>[] nodes, Comparator<LinkNode<C>> comp) {
 		
+		// Checks the base case - An array of length 1 is already sorted
 		if (nodes.length > 1) {
 			
-			// Creating two sublists
+			// Divides the array to sort into 2 sub-arrays
 			int x = nodes.length/2;
 			int y = nodes.length-x;
 			LinkNode<C>[] xa = new LinkNode[x];
 			LinkNode<C>[] ya = new LinkNode[y];
 			
-			// Copying to sublists from the starting list
+			// Copies values into the 2 sub-arrays
 			int i;
 			for (i = 0; i<x; i++) {
-				xa[i] = nodes[i]; // TODO: Fix - xa[i] stays as null
+				xa[i] = nodes[i];
 			}
 			for (int i2 = 0; i2 < y; i2++,i++) {
 				ya[i2] = nodes[i];
@@ -64,8 +65,15 @@ public class Sort<C> {
 			int xai = 0;
 			int yai = 0;
 			while (xai < xa.length && yai<ya.length) {
-								// TODO: Make sure the below is correct
-				nodes[i++] = ( (comp.compare(xa[xai], ya[yai]) > 1) ? xa[xai++] : ya[yai++]);
+				
+				// TODO: REMOVE AFTER DEBUGGING
+				System.out.println("COMPARING THE FOLLOWING: ");
+				System.out.println("a = " + ((Book) xa[xai].getContents()).getTitle());
+				System.out.println("b = " + ((Book) ya[yai].getContents()).getTitle());
+				System.out.println(comp.compare(xa[xai], ya[yai]));
+				// TODO: REMOVE AFTER DEBUGGING
+				
+				nodes[i++] = ( (comp.compare(xa[xai], ya[yai]) < 0) ? xa[xai++] : ya[yai++]);
 			}
 			while (xai < xa.length) {
 				nodes[i++] = xa[xai++];
@@ -75,7 +83,6 @@ public class Sort<C> {
 			}
 			
 		}
-		
 			for (int i = 0; i < sortArray.length; i++) {
 			
 			System.out.println(((Book) sortArray[i].getContents()).getTitle());
@@ -83,6 +90,20 @@ public class Sort<C> {
 			}
 			System.out.println("\n");
 		
+	}
+	
+	/**
+	 * Returns the instance's array of nodes back into a LinkList
+	 * @return - This instance's sortArray as a LinkList
+	 */
+	public LinkList<C> getSortArrayAsLinkList() {
+		LinkList<C> linkList= new LinkList<>();
+		
+		for (LinkNode<C> n : sortArray) {
+			linkList.add(n);
+		}
+		
+		return linkList;
 	}
 	
 }
