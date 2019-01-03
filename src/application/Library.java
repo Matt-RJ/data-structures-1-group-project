@@ -39,11 +39,11 @@ public class Library {
 	public void setSavedCurrentBookID(int savedCurrentBookID) {
 		this.savedCurrentBookID = savedCurrentBookID;
 	}
-	public int getSavedCurrentCharacterID() {
+	public int getSavedCurrentBookCharacterID() {
 		return savedCurrentBookCharacterharacterID;
 	}
-	public void setSavedCurrentBookCharacterID(int savedCurrentCharacterID) {
-		this.savedCurrentBookCharacterharacterID = savedCurrentCharacterID;
+	public void setSavedCurrentBookCharacterID(int savedCurrentBookCharacterID) {
+		this.savedCurrentBookCharacterharacterID = savedCurrentBookCharacterID;
 	}
 	public Hash<Book> getSavedBookHash() {
 		return savedBookHash;
@@ -195,14 +195,51 @@ public class Library {
 	 * Sorts the characters in characterHash by their genders
 	 */
 	public static void sortBookCharactersByGender() {
-		
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookCharacterHash.toNodeArray());
+		sort.setSortArray(Library.bookCharacterHash.toNodeArray());
+			
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookCharacterHash.get(a.getContents()).getGender()
+		.compareTo(bookCharacterHash.get(b.getContents()).getGender()));
+			
+		// Updates the Library's sorted book key field with the books
+		Library.bookCharacterKeys = sort.getSortArrayAsPrimitive();
 	}
 	
 	/**
 	 * Sorts the characters in characterHash by their ages
 	 */
 	public static void sortBookCharactersByAge() {
-		
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookCharacterHash.toNodeArray());
+		sort.setSortArray(Library.bookCharacterHash.toNodeArray());
+			
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		new Integer(bookCharacterHash.get(a.getContents()).getAge())
+		.compareTo(new Integer(bookCharacterHash.get(b.getContents()).getAge())));
+			
+		// Updates the Library's sorted book key field with the books
+		Library.bookCharacterKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the characters in characterHash by their descriptions
+	 */
+	public static void sortBookCharactersByDescription() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookCharacterHash.toNodeArray());
+		sort.setSortArray(Library.bookCharacterHash.toNodeArray());
+			
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookCharacterHash.get(a.getContents()).getDescription()
+		.compareTo(bookCharacterHash.get(b.getContents()).getDescription()));
+			
+		// Updates the Library's sorted book key field with the books
+		Library.bookCharacterKeys = sort.getSortArrayAsPrimitive();
 	}
 	
 }

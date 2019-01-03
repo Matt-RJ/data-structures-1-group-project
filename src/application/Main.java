@@ -14,18 +14,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 /*
- * TO DO:
- * 		- Use Library's 'sortedBooks' array to create indices of each book, and delete by index
- * 			- sortedBooks contains book keys. Use the get() method in Hash to get the right bucket and item. Delete that.
- * 
- * 		- Add searching (By title)
- * 
- * 		- TODO: (CURRENT TASK) - Get Characters (adding, etc) working
- * 			
+ * TODO: Add searching:
+ * 			- Sort by the field being searched (e.g. if searching or a title, sort by title. Then do a binary search to find a match)
  * 
  */
 
 /**
+ * This is a book and character management system.
+ * Books and characters can be added, removed. They are stored in hash tables.
+ * When viewing the contents of the hash tables, the contents are sorted by a 
+ * chosen property.
  * 
  * @author Mantas Rajackas
  *
@@ -67,15 +65,11 @@ public class Main extends Application {
 	public static void addBook(Book book) {
 		Library.bookHash.add(book);
 		System.out.println("Book with the name " + book.getTitle() + " added.");
-		
 	}
 	
-	public static void updateBook() {
-		
-	}
-	
-	public static void removeBook() {
-		
+	public static void removeBook(Book bookToRemove) {
+		Library.bookHash.remove(bookToRemove);
+		System.out.println("Book with the name " + bookToRemove.getTitle() + " removed.");
 	}
 	
 	
@@ -90,12 +84,9 @@ public class Main extends Application {
 		System.out.println("Character with the name " + character.getName() + " added.");
 	}
 	
-	public static void updateCharacter() {
-		
-	}
-	
-	public static void removeCharacter() {
-		
+	public static void removeCharacter(BookCharacter charToRemove) {
+		Library.bookCharacterHash.remove(charToRemove);
+		System.out.println("Character with the name " + charToRemove.getName());
 	}
 	
 	// MISCELLANEOUS
@@ -112,7 +103,6 @@ public class Main extends Application {
 		library.setSavedBookCharacterHash(Library.bookCharacterHash);
 		library.setSavedBookKeys(Library.bookKeys);
 		library.setSavedBookCharacterKeys(Library.bookCharacterKeys);
-		
 		
 		FileOutputStream fos = new FileOutputStream(new File("./library.xml"));
 		XMLEncoder encoder = new XMLEncoder(fos);
@@ -133,7 +123,7 @@ public class Main extends Application {
 		Library tempLibrary = (Library) decoder.readObject();
 		
 		Library.currentBookID = tempLibrary.getSavedCurrentBookID();
-		Library.currentBookCharacterID = tempLibrary.getSavedCurrentCharacterID();
+		Library.currentBookCharacterID = tempLibrary.getSavedCurrentBookCharacterID();
 		Library.bookHash = tempLibrary.getSavedBookHash();
 		Library.bookCharacterHash = tempLibrary.getSavedBookCharacterHash();
 		Library.bookKeys = tempLibrary.getSavedBookKeys();

@@ -77,6 +77,28 @@ public class BookCharacter {
 	}
 	
 	
+	@Override
+	public String toString() {
+		String characterString = "";
+		
+		characterString += "Name: " + this.name + "\n";
+		characterString += "Gender: " + this.gender + "\n";
+		characterString += "Age: " + this.age + "\n";
+		characterString += "Description: " + this.description + "\n";
+		
+		return characterString;
+	}
 	
+	@Override
+	public int hashCode() {
+		
+		int hashCode = 0;
+		
+		for (int i = 0; i < name.length(); i++) { 
+			hashCode += name.charAt(i);
+		}
+		
+		return hashCode;	
+	}
 	
 }

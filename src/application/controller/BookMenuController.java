@@ -67,8 +67,9 @@ public class BookMenuController extends SuperController {
 		int bookKey = Library.bookKeys[bookIndex];
 		Book bookToRemove = null;
 		
-		// TODO: Get book removal to work
-		Library.bookHash.remove(bookToRemove);
+		bookToRemove = Library.bookHash.get(bookKey);
+		
+		Main.removeBook(bookToRemove);
 	}
 	
 	/**

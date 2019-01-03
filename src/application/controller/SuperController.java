@@ -54,7 +54,7 @@ public class SuperController {
 		// Loads the book menu
 		if (event.getSource().equals(toCharacterMenuButton)) {
 			stage = (Stage) toCharacterMenuButton.getScene().getWindow();
-			loader = new FXMLLoader(getClass().getResource("../scene/BookMenu.fxml"));
+			loader = new FXMLLoader(getClass().getResource("../scene/CharacterMenu.fxml"));
 			root = loader.load();
 		}
 		

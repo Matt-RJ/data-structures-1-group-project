@@ -46,7 +46,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Characters" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="toCharacterMenuButton" mnemonicParsing="false" onAction="#switchScene" text="Characters" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <padding>
                   <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
                </padding>
