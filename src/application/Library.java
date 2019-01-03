@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Comparator;
+
 /**
  * This class contains the hash tables of books and characters, as well
  * as the relevant methods to manage them.

@@ -1,5 +1,6 @@
 package application.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -22,6 +23,13 @@ public class HashTest {
 	private Book book4 = new Book("The Great Gatsby");
 	private Book book5 = new Book("Moby Dick");
 	private Book book6 = new Book("Hamlet");
+	
+	private Book book7 = new Book("Book number 7");
+	private Book book8 = new Book("Book number 8");
+	private Book book9 = new Book("Book number 9");
+	private Book book10 = new Book("Book number 10");
+	private Book book11 = new Book("Book number 11");
+	private Book book12 = new Book("Book number 12");
 	
 	@BeforeEach
 	public void setup() {
@@ -46,7 +54,7 @@ public class HashTest {
 		
 	}
 	
-	/*
+	
 	@Test
 	public void addTest() {
 		bookHash = new Hash<Book>(10);
@@ -60,7 +68,7 @@ public class HashTest {
 		
 		listItems();
 	}
-	*/
+	
 	
 	@Test
 	public void removeTest() {
@@ -111,8 +119,33 @@ public class HashTest {
 	
 	@Test
 	public void getSizeTest() {
-		// TODO: Fix null pointer here
-		bookHash.getSize();
+		bookHash = new Hash<Book>(10);
+		bookHash.add(book1);
+		bookHash.add(book2);
+		bookHash.add(book3);
+		bookHash.add(book4);
+		bookHash.add(book5);
+		bookHash.add(book6);
+		
+		assertEquals(6, bookHash.getSize(bookHash.getHashTable()));
+	}
+	
+	@Test
+	public void rehashTest() {
+		bookHash = new Hash<Book>(6);
+		bookHash.add(book1);
+		bookHash.add(book2);
+		bookHash.add(book3);
+		bookHash.add(book4);
+		bookHash.add(book5);
+		bookHash.add(book6);
+		bookHash.add(book7);
+		bookHash.add(book8);
+		bookHash.add(book9);
+		bookHash.add(book10);
+		bookHash.add(book11);
+		bookHash.add(book12);
+		
 	}
 	
 }

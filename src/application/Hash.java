@@ -58,10 +58,12 @@ public class Hash<E> {
 	/**
 	 * Determines where an object will be stored by its key
 	 * @param key - The object key
+	 * @param table - The hash table to map the key to
 	 * @return - The location of where the object is to be stored
 	 */
-	public int hash(E key) {
-		return Math.abs(key.hashCode())%hashTable.length;
+	@SuppressWarnings("rawtypes")
+	public int hash(E key, LinkList[] table) {
+		return Math.abs(key.hashCode())%table.length;
 	}
 	
 	/**
@@ -73,14 +75,35 @@ public class Hash<E> {
 		return Math.abs(key)%hashTable.length;
 	}
 	
+	public int hash(int key, LinkList<E>[] table) {
+		return Math.abs(key)%table.length;
+	}
+	
 	/**
 	 * Adds an object into the hashTable.
 	 * @param object - The object to add
 	 * @return The index of the object location in the hash table
 	 */
 	public int add(E object) {
-		int location = hash(object);
+		int location = hash(object, hashTable);
+		
+		if (getLoadFactor() >= 0.6) {
+			reHash();
+		}
 		hashTable[location].add(new LinkNode<E>(object));
+		return location;
+	}
+	
+	/**
+	 * Adds an object into a different hash table.
+	 * @param object - The object to add
+	 * @param table - The hash table to add to
+	 * @return The index of the object location in the hash table
+	 */
+	public int add(E object, LinkList<E>[] table) {
+		int location = hash(object, table);
+		
+		table[location].add(new LinkNode<E>(object));
 		return location;
 	}
 	
@@ -90,7 +113,7 @@ public class Hash<E> {
 	 */
 	public void remove(E toRemove) {
 		// TODO: Test
-		int location = hash(toRemove);
+		int location = hash(toRemove, hashTable);
 		int i = 0;
 		for (E item : hashTable[location]) {
 			if (item.equals(toRemove)) {
@@ -146,7 +169,9 @@ public class Hash<E> {
 		
 		for (LinkList<E> list : hashTable) {
 			for (E e : list) {
-				if (!e.equals(null)) newHashTable[e.hashCode()].add(new LinkNode<E>(e));
+				if (!e.equals(null)) {
+					add(e, newHashTable);
+				}
 			}
 		}
 		
@@ -181,7 +206,7 @@ public class Hash<E> {
 		int pos = 0;
 		
 		@SuppressWarnings("unchecked")
-		LinkNode<Integer>[] nodeArray = new LinkNode[this.getSize()];
+		LinkNode<Integer>[] nodeArray = new LinkNode[this.getSize(hashTable)];
 		
 		// Checks each bucket
 		for (LinkList<E> l : hashTable) {
@@ -201,7 +226,7 @@ public class Hash<E> {
 	 * Calculates how many items are in the hash table
 	 * @return The number of non-empty nodes
 	 */
-	public int getSize() {
+	public int getSize(LinkList<E>[] hashTable) {
 		int itemsInHashTable = 0;
 		
 		for (LinkList<E> l : hashTable) {
@@ -209,4 +234,5 @@ public class Hash<E> {
 		}
 		return itemsInHashTable;
 	}
+	
 }

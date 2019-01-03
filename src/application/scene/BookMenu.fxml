@@ -196,24 +196,6 @@
                <GridPane.margin>
                   <Insets top="180.0" />
                </GridPane.margin></Button>
-            <Label alignment="CENTER" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <font>
-                  <Font size="24.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="300.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Title:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets right="10.0" top="345.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField fx:id="newTitle1" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="340.0" />
-               </GridPane.margin>
-            </TextField>
          </children>
       </GridPane>
    </right>

@@ -1,5 +1,7 @@
 package application.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,8 +80,20 @@ public class SortTest {
 
 		LinkList<Integer> sortedKeys = sort.getSortArrayAsLinkList();
 		
-		for (Integer k : sortedKeys) {
-			System.out.println(bookHash.get(k).getTitle());
+		String[] titles = new String[9];
+		titles[0] = "1984";
+		titles[1] = "Catch 22";
+		titles[2] = "Death and Nightingales";
+		titles[3] = "Hamlet";
+		titles[4] = "Life of Pi";
+		titles[5] = "The Great Gatsby";
+		titles[6] = "The Martian";
+		titles[7] = "To Kill a Mockingbird";
+		titles[8] = "Wonder";
+		
+		for (int i = 0; i < 8; i++) {
+			assertEquals(bookHash.get(sortedKeys.getNode(i).getContents()).getTitle(),titles[i]);
+			System.out.println(bookHash.get(sortedKeys.getNode(i).getContents()).getTitle());
 		}
 	}
 	
