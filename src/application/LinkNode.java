@@ -2,6 +2,7 @@ package application;
 
 /**
  * A single node of a LinkedList
+ * 
  * @author Mantas Rajackas
  *
  * @param <C> - The contents of the node

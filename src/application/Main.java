@@ -12,9 +12,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 
+/*
+ * TO DO:
+ * 		- Use Library's 'sortedBooks' array to create indices of each book, and delete by index
+ * 			- sortedBooks contains book keys. Use the get() method in Hash to get the right bucket and item. Delete that.
+ * 
+ * 		- Add searching (By title)
+ * 
+ * 		- TODO: (CURRENT TASK) - Get Characters (adding, etc) working
+ * 			
+ * 
+ */
 
+/**
+ * 
+ * @author Mantas Rajackas
+ *
+ */
 public class Main extends Application {
 		
 	static Library library = new Library();
@@ -37,7 +52,7 @@ public class Main extends Application {
 			load();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		launch(args);
 	}
 	
@@ -52,6 +67,7 @@ public class Main extends Application {
 	public static void addBook(Book book) {
 		Library.bookHash.add(book);
 		System.out.println("Book with the name " + book.getTitle() + " added.");
+		
 	}
 	
 	public static void updateBook() {
@@ -69,8 +85,9 @@ public class Main extends Application {
 	 * Adds a new character to the system.
 	 * @param character - The character to add.
 	 */
-	public static void addCharacter(Character character) {
-		Library.characterHash.add(character);
+	public static void addCharacter(BookCharacter character) {
+		Library.bookCharacterHash.add(character);
+		System.out.println("Character with the name " + character.getName() + " added.");
 	}
 	
 	public static void updateCharacter() {
@@ -90,11 +107,11 @@ public class Main extends Application {
 	public static void save() throws IOException {
 		// Prepares the variables to save
 		library.setSavedCurrentBookID(Library.currentBookID);
-		library.setSavedCurrentCharacterID(Library.currentCharacterID);
+		library.setSavedCurrentBookCharacterID(Library.currentBookCharacterID);
 		library.setSavedBookHash(Library.bookHash);
-		library.setSavedCharacterHash(Library.characterHash);
-		library.setSavedSortedBooks(Library.sortedBooks);
-		library.setSavedSortedCharacters(Library.sortedCharacters);
+		library.setSavedBookCharacterHash(Library.bookCharacterHash);
+		library.setSavedBookKeys(Library.bookKeys);
+		library.setSavedBookCharacterKeys(Library.bookCharacterKeys);
 		
 		
 		FileOutputStream fos = new FileOutputStream(new File("./library.xml"));
@@ -116,11 +133,11 @@ public class Main extends Application {
 		Library tempLibrary = (Library) decoder.readObject();
 		
 		Library.currentBookID = tempLibrary.getSavedCurrentBookID();
-		Library.currentCharacterID = tempLibrary.getSavedCurrentCharacterID();
+		Library.currentBookCharacterID = tempLibrary.getSavedCurrentCharacterID();
 		Library.bookHash = tempLibrary.getSavedBookHash();
-		Library.characterHash = tempLibrary.getSavedCharacterHash();
-		Library.sortedBooks = tempLibrary.getSavedSortedBooks();
-		Library.sortedCharacters = tempLibrary.getSavedSortedCharacters();
+		Library.bookCharacterHash = tempLibrary.getSavedBookCharacterHash();
+		Library.bookKeys = tempLibrary.getSavedBookKeys();
+		Library.bookCharacterKeys = tempLibrary.getSavedBookCharacterKeys();
 		
 		decoder.close();
 		fis.close();

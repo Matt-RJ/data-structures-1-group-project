@@ -3,6 +3,7 @@ package application;
 /**
  * Handles hashing for Book and Character objects.
  * Its hash table uses separate chaining for collision resolution.
+ * 
  * @author Mantas Rajackas
  *
  * @param <E> - The object being stored in the hash table
@@ -30,6 +31,7 @@ public class Hash<E> {
 	public LinkList<E>[] getHashTable() {
 		return hashTable;
 	}
+	
 	public void setHashTable(LinkList<E>[] table) {
 		this.hashTable = table;
 	}
@@ -63,20 +65,28 @@ public class Hash<E> {
 	}
 	
 	/**
-	 * Adds an object into the hashTable
+	 * Determines where an object is in the hash table by its key
+	 * @param key - The key of the object
+	 * @return - The bucket's index that the key maps to
+	 */
+	public int hash(int key) {
+		return Math.abs(key)%hashTable.length;
+	}
+	
+	/**
+	 * Adds an object into the hashTable.
 	 * @param object - The object to add
 	 * @return The index of the object location in the hash table
 	 */
 	public int add(E object) {
-		// TODO: Test
 		int location = hash(object);
 		hashTable[location].add(new LinkNode<E>(object));
 		return location;
 	}
 	
 	/**
-	 * Removes an object from the hash table
-	 * @param toRemove
+	 * Removes an object from the hash table.
+	 * @param toRemove - The object to remove
 	 */
 	public void remove(E toRemove) {
 		// TODO: Test
@@ -90,36 +100,113 @@ public class Hash<E> {
 		}
 	}
 	
-	// TODO: Add way to get objects from hash table
-	
 	/**
-	 * TODO
-	 * @return
+	 * Removes an object from the hash table.
+	 * @param key - The key of the object to remove
 	 */
-	public E get() {
-		E objectToReturn = null;
-		
-		// 1. Get the key of the item you want (Or other property)
-		// 2. Get the correct bucket
-		// 3. Iterate through the LinkList until the right item is found
-		
-		return objectToReturn;
+	public void removeByKey(int key) {
+		// TODO: Test
+		int i = 0;
+		for (Object item : hashTable[key]) {
+			if (item.hashCode() == key) {
+				hashTable[key].remove(i);
+			}
+		}
 	}
 	
 	/**
-	 * Rehashes the hash table with a double hash table size
+	 * Gets an item from the HashTable.
+	 * @param key - The key of the object to search for
+	 * @return An object with the same key
+	 */
+	public E get(int key) {
+	
+		E foundObject = null;
+		
+		// Gets the correct bucket
+		LinkList<E> bucketFound = hashTable[hash(key)];
+		
+		// Linear searches through the bucket's LinkList
+		for (E e : bucketFound) {
+			if (e.hashCode() == key) foundObject = e;
+		}
+		
+		return foundObject;
+	}
+	
+	/**
+	 * Rehashes the hash table with double its size.
 	 */
 	@SuppressWarnings("unchecked")
 	public void reHash() {
-		// TODO
+		
+		// TODO: Test this
 		
 		LinkList<E>[] newHashTable = new LinkList[hashTable.length * 2];
 		
 		for (LinkList<E> list : hashTable) {
-			
+			for (E e : list) {
+				if (!e.equals(null)) newHashTable[e.hashCode()].add(new LinkNode<E>(e));
+			}
 		}
 		
+		this.hashTable = newHashTable;
+	}
+	
+	/**
+	 * Returns the hash table's contents as a LinkList
+	 */
+	public LinkList<E> toLinkList() {
+		LinkList<E> list = new LinkList<E>();
+		
+		for (LinkList<E> l : this.hashTable) {
+			for (E e : l) {
+				if (!e.equals(null)) {
+					list.add(new LinkNode<E>(e));
+				}
+			}
+		}
+		
+		return list;
 	}
 	
 	
+	/**
+	 * Turns the instance's hash table into an array of LinkNode objects,
+	 * each containing a key present in the hash table. This conversion
+	 * is required for MergeSort() to work.
+	 * @return A LinkNode array of hash table keys
+	 */
+	public LinkNode<Integer>[] toNodeArray() {
+		int pos = 0;
+		
+		@SuppressWarnings("unchecked")
+		LinkNode<Integer>[] nodeArray = new LinkNode[this.getSize()];
+		
+		// Checks each bucket
+		for (LinkList<E> l : hashTable) {
+			// Checks all nodes on each bucket's chain for non-empty nodes
+			for (E m : l) {
+				if (!m.equals(null)) {
+					nodeArray[pos] = new LinkNode<Integer>(m.hashCode()); pos++;
+				}
+			}
+		}
+		
+		return nodeArray;
+	}
+	
+	
+	/**
+	 * Calculates how many items are in the hash table
+	 * @return The number of non-empty nodes
+	 */
+	public int getSize() {
+		int itemsInHashTable = 0;
+		
+		for (LinkList<E> l : hashTable) {
+			itemsInHashTable += l.getSize();
+		}
+		return itemsInHashTable;
+	}
 }

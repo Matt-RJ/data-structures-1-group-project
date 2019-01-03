@@ -11,7 +11,8 @@ import application.LinkList;
 import application.LinkNode;
 
 /**
- * This class runs tests for the LinkList class.
+ * Runs tests for the LinkList class
+ * 
  * @author Mantas Rajackas
  *
  */

@@ -1,6 +1,5 @@
 package application.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -13,6 +12,8 @@ import application.LinkList;
 import application.LinkNode;
 
 public class HashTest {
+	
+	LinkNode<Integer>[] keys;
 	
 	private Hash<Book> bookHash;
 	private Book book1 = new Book("The Martian");
@@ -32,7 +33,6 @@ public class HashTest {
 		
 	}
 	
-	
 	@Test
 	public void loadFactorTest() {
 		bookHash = new Hash<Book>(10);
@@ -46,6 +46,7 @@ public class HashTest {
 		
 	}
 	
+	/*
 	@Test
 	public void addTest() {
 		bookHash = new Hash<Book>(10);
@@ -59,6 +60,7 @@ public class HashTest {
 		
 		listItems();
 	}
+	*/
 	
 	@Test
 	public void removeTest() {
@@ -81,6 +83,36 @@ public class HashTest {
 			}
 			System.out.println();
 		}
+	}
+	
+	public void toLinkListTest() {
+		// TODO
+	}
+	
+	@Test
+	public void toNodeArrayTest() {
+		// TODO
+		bookHash = new Hash<Book>(10);
+		bookHash.add(book1);
+		bookHash.add(book2);
+		bookHash.add(book3);
+		bookHash.add(book4);
+		bookHash.add(book5);
+		bookHash.add(book6);
+		
+		keys = bookHash.toNodeArray();
+		
+		System.out.println("Number of keys converted: " + keys.length);
+		
+		for (LinkNode<Integer> k : keys) {
+			System.out.println(k.getContents());
+		}
+	}
+	
+	@Test
+	public void getSizeTest() {
+		// TODO: Fix null pointer here
+		bookHash.getSize();
 	}
 	
 }

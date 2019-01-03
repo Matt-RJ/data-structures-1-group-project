@@ -11,7 +11,6 @@ public class Book {
 	private int numberOfPages = 0;			// The number of pages in the book
 	private String genre = "";				// The genre of the book - "Thriller, Drama", etc
 	private String plotDescription;			// A brief description of the book's plot
-	private String coverImage = "";			// A URL to an image of the book's cover
 	
 	
 	// CONSTRUCTORS
@@ -32,10 +31,9 @@ public class Book {
 	 * @param pageNum - The number of pages
 	 * @param genre - Genre of the story
 	 * @param plotDesc - A brief plot description
-	 * @param coverImg - A URL to an image of the book's cover
 	 */
 	public Book(String title, String author, int pubYear, int pageNum,
-			String genre, String plotDesc, String coverImg) {
+			String genre, String plotDesc) {
 		
 		this.ID = Library.currentBookID;
 		Library.currentBookID++;
@@ -46,7 +44,6 @@ public class Book {
 		if (pageNum > 0) this.numberOfPages = pageNum;
 		this.genre = genre;
 		this.plotDescription = plotDesc;
-		this.coverImage = coverImg;
 		
 	}
 	
@@ -97,11 +94,31 @@ public class Book {
 	public void setPlotDescription(String plotDescription) {
 		this.plotDescription = plotDescription;
 	}
-	public String getCoverImage() {
-		return coverImage;
+	
+	@Override
+	public String toString() {
+		String bookString = "";
+		
+		bookString += "Title: " + this.title + "\n";
+		bookString += "Author: " + this.author + "\n";
+		bookString += "Year: " + this.yearOfPublication + "\n";
+		bookString += "Pages: " + this.numberOfPages + "\n";
+		bookString += "Genre: " + this.genre + "\n";
+		bookString += "Description: " + this.plotDescription + "\n";
+		
+		return bookString;
 	}
-	public void setCoverImage(String coverImage) {
-		this.coverImage = coverImage;
+	
+	@Override
+	public int hashCode() {
+		
+		int hashCode = 0;
+		
+		for (int i = 0; i < title.length(); i++) { 
+			hashCode += title.charAt(i);
+		}
+		
+		return hashCode;	
 	}
-
+	
 }

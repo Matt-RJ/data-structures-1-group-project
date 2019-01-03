@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 /**
  * Used for iterating over a LinkList
+ * 
  * @author Mantas Rajackas
  * 
  * @param <I> - The contents of the nodes in the LinkList

@@ -1,27 +1,33 @@
 package application;
 
+/**
+ * This class contains the hash tables of books and characters, as well
+ * as the relevant methods to manage them.
+ * @author Mantas Rajackas
+ *
+ */
 public class Library {
 	
 	// Keeps track of the available IDs when creating
 	public static int currentBookID = 1;
-	public static int currentCharacterID = 1;
+	public static int currentBookCharacterID = 1;
 	
-	// The primary storage for the program
+	// The primary form storage for the program
 	public static Hash<Book> bookHash = new Hash<>(25);
-	public static Hash<Character> characterHash = new Hash<>(25);
+	public static Hash<BookCharacter> bookCharacterHash = new Hash<>(25);
 	
 	
-	// SORTED FOR DISPLAYING
-	public static Book[] sortedBooks;
-	public static Character[] sortedCharacters;
+	// Arrays of keys for retrieving Book and Character objects (Sorted).
+	public static int[] bookKeys;
+	public static int[] bookCharacterKeys;
 	
 	// Variables for saving the program
 	private int savedCurrentBookID;
-	private int savedCurrentCharacterID;
+	private int savedCurrentBookCharacterharacterID;
 	private Hash<Book> savedBookHash;
-	private Hash<Character> savedCharacterHash;
-	private Book[] savedSortedBooks;
-	private Character[] savedSortedCharacters;
+	private Hash<BookCharacter> savedBookCharacterHash;
+	private int[] savedBookKeys;
+	private int[] savedBookCharacterKeys;
 	
 	public Library() {
 		
@@ -34,10 +40,10 @@ public class Library {
 		this.savedCurrentBookID = savedCurrentBookID;
 	}
 	public int getSavedCurrentCharacterID() {
-		return savedCurrentCharacterID;
+		return savedCurrentBookCharacterharacterID;
 	}
-	public void setSavedCurrentCharacterID(int savedCurrentCharacterID) {
-		this.savedCurrentCharacterID = savedCurrentCharacterID;
+	public void setSavedCurrentBookCharacterID(int savedCurrentCharacterID) {
+		this.savedCurrentBookCharacterharacterID = savedCurrentCharacterID;
 	}
 	public Hash<Book> getSavedBookHash() {
 		return savedBookHash;
@@ -45,23 +51,158 @@ public class Library {
 	public void setSavedBookHash(Hash<Book> savedBookHash) {
 		this.savedBookHash = savedBookHash;
 	}
-	public Hash<Character> getSavedCharacterHash() {
-		return savedCharacterHash;
+	public Hash<BookCharacter> getSavedBookCharacterHash() {
+		return savedBookCharacterHash;
 	}
-	public void setSavedCharacterHash(Hash<Character> savedCharacterHash) {
-		this.savedCharacterHash = savedCharacterHash;
+	public void setSavedBookCharacterHash(Hash<BookCharacter> savedBookCharacterHash) {
+		this.savedBookCharacterHash = savedBookCharacterHash;
 	}
-	public Book[] getSavedSortedBooks() {
-		return savedSortedBooks;
+	public int[] getSavedBookKeys() {
+		return savedBookKeys;
 	}
-	public void setSavedSortedBooks(Book[] savedSortedBooks) {
-		this.savedSortedBooks = savedSortedBooks;
+	public void setSavedBookKeys(int[] savedBookKeys) {
+		this.savedBookKeys = savedBookKeys;
 	}
-	public Character[] getSavedSortedCharacters() {
-		return savedSortedCharacters;
+	public int[] getSavedBookCharacterKeys() {
+		return savedBookCharacterKeys;
 	}
-	public void setSavedSortedCharacters(Character[] savedSortedCharacters) {
-		this.savedSortedCharacters = savedSortedCharacters;
+	public void setSavedBookCharacterKeys(int[] savedBookCharacterKeys) {
+		this.savedBookCharacterKeys = savedBookCharacterKeys;
+	}
+	
+	
+	
+	// SORTING
+	
+	/**
+	 * Encapsulates each int in an int array with a LinkNode
+	 * @return
+	 */
+	public LinkNode<Integer>[] toNodeArray(int[] intArray) {
+		@SuppressWarnings("unchecked")
+		LinkNode<Integer>[] linkNodeArray = new LinkNode[intArray.length];
+		
+		for (int i = 0; i < intArray.length; i++) {
+			linkNodeArray[i] = new LinkNode<Integer>(intArray[i]);
+		}
+		
+		return linkNodeArray;
+	}
+	
+	/**
+	 * Sorts the books in bookHash by their titles
+	 */
+	public static void sortBooksByTitle() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookHash.toNodeArray());
+		sort.setSortArray(Library.bookHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookHash.get(a.getContents()).getTitle()
+		.compareTo(bookHash.get(b.getContents()).getTitle()));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the books in bookHash by their authors
+	 */
+	public static void sortBooksByAuthor() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookHash.toNodeArray());
+		sort.setSortArray(Library.bookHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookHash.get(a.getContents()).getAuthor()
+		.compareTo(bookHash.get(b.getContents()).getAuthor()));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the books in bookHash by their years
+	 */
+	public static void sortBooksByYear() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookHash.toNodeArray());
+		sort.setSortArray(Library.bookHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		new Integer(bookHash.get(a.getContents()).getYearOfPublication())
+		.compareTo(new Integer(bookHash.get(b.getContents()).getYearOfPublication())));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the books in bookHash by their page counts
+	 */
+	public static void sortBooksByPages() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookHash.toNodeArray());
+		sort.setSortArray(Library.bookHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		new Integer(bookHash.get(a.getContents()).getNumberOfPages())
+		.compareTo(new Integer(bookHash.get(b.getContents()).getNumberOfPages())));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the books in bookHash by their genres
+	 */
+	public static void sortBooksByGenre() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookHash.toNodeArray());
+		sort.setSortArray(Library.bookHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookHash.get(a.getContents()).getGenre()
+		.compareTo(bookHash.get(b.getContents()).getGenre()));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the characters in characterHash by their names
+	 */
+	public static void sortBookCharactersByName() {
+		// Preparation for sorting
+		Sort<Integer> sort = new Sort<Integer>(Library.bookCharacterHash.toNodeArray());
+		sort.setSortArray(Library.bookCharacterHash.toNodeArray());
+		
+		// Using merge sort on all books
+		sort.mergeSort(sort.getSortArray(),(a,b) -> 
+		bookCharacterHash.get(a.getContents()).getName()
+		.compareTo(bookCharacterHash.get(b.getContents()).getName()));
+		
+		// Updates the Library's sorted book key field with the books
+		Library.bookCharacterKeys = sort.getSortArrayAsPrimitive();
+	}
+	
+	/**
+	 * Sorts the characters in characterHash by their genders
+	 */
+	public static void sortBookCharactersByGender() {
+		
+	}
+	
+	/**
+	 * Sorts the characters in characterHash by their ages
+	 */
+	public static void sortBookCharactersByAge() {
+		
 	}
 	
 }

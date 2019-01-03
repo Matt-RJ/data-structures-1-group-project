@@ -27,7 +27,7 @@
       </MenuBar>
    </top>
    <center>
-      <TextArea fx:id="infoPanel" editable="false" prefHeight="200.0" prefWidth="200.0" text="Books will be displayed here..." BorderPane.alignment="CENTER">
+      <TextArea fx:id="infoPanel" editable="false" prefHeight="200.0" prefWidth="200.0" text="Characters will be displayed here..." BorderPane.alignment="CENTER">
          <font>
             <Font name="Trebuchet MS" size="14.0" />
          </font></TextArea>
@@ -43,17 +43,17 @@
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="391.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="newTitle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <TextField fx:id="newName" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin>
             </TextField>
-            <Label text="Title:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Label text="Name" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="65.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Add Book" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Label text="Add Char." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <font>
                   <Font size="24.0" />
                </font>
@@ -61,59 +61,39 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Genre:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets right="10.0" top="225.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Pages:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Label text="Description" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="185.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Year:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Label text="Age" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="145.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Author:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Label text="Gender" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="10.0" top="105.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="newAuthor" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <TextField fx:id="newGender" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="100.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="newYearOfPublication" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <TextField fx:id="newAge" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="140.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="newNumberOfPages" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <TextField fx:id="newDescription" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="180.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="newGenre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Button fx:id="addCharacterButton" mnemonicParsing="false" onAction="#addCharacter" text="Add Character" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets top="220.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="newPlotDescription" prefHeight="66.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="260.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Description:" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets right="10.0" top="265.0" />
-               </GridPane.margin>
-            </Label>
-            <Button fx:id="addBook" mnemonicParsing="false" onAction="#addBook" text="Add Book" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="340.0" />
+                  <Insets top="215.0" />
                </GridPane.margin>
                <padding>
                   <Insets bottom="5.0" left="26.0" right="26.0" top="5.0" />
@@ -145,7 +125,7 @@
                   <Insets bottom="5.0" left="28.0" right="28.0" top="5.0" />
                </padding>
             </Button>
-            <Label alignment="CENTER" text="Delete Book" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Label alignment="CENTER" text="Delete Char." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <font>
                   <Font size="24.0" />
                </font>
@@ -176,23 +156,19 @@
                   <Insets top="10.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="sortByTitleButton" mnemonicParsing="false" onAction="#sortByTitle" text="Title" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Button fx:id="sortByNameButton" mnemonicParsing="false" onAction="#sortByName" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin></Button>
-            <Button fx:id="sortByAuthorButton" mnemonicParsing="false" onAction="#sortByAuthor" text="Author" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Button fx:id="sortByGenderButton" mnemonicParsing="false" onAction="#sortByGender" text="Gender" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="100.0" />
                </GridPane.margin></Button>
-            <Button fx:id="sortByYearButton" mnemonicParsing="false" onAction="#sortByYear" text="Year" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Button fx:id="sortByAgeButton" mnemonicParsing="false" onAction="#sortByAge" text="Age" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="140.0" />
                </GridPane.margin></Button>
-            <Button fx:id="sortByGenreButton" mnemonicParsing="false" onAction="#sortByGenre" text="Genre" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="220.0" />
-               </GridPane.margin></Button>
-            <Button fx:id="sortByPagesButton" mnemonicParsing="false" onAction="#sortByPages" text="Pages" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Button fx:id="sortByDescriptionButton" mnemonicParsing="false" onAction="#sortByDescription" text="Pages" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="180.0" />
                </GridPane.margin></Button>

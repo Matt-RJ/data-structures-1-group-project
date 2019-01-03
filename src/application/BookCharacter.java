@@ -1,11 +1,12 @@
 package application;
 
 /**
- * A character that can appear in a book, whether real or fictional.
+ * A character that can appear in a book
+ * 
  * @author Mantas Rajackas
  *
  */
-public class Character {
+public class BookCharacter {
 	
 	
 	// FIELDS
@@ -15,16 +16,21 @@ public class Character {
 	private int age = 0;			 // Age in years
 	private String description = ""; // The character's description
 	
+	// Contains hash codes of books the character is in
+	private LinkList<Integer> booksAppearsIn = new LinkList<>(); 
+	
+	
 	// CONSTRUCTORS
 	
-	public Character() {
+	public BookCharacter() {
 		
 	}
 	
-	public Character(String name, String gender, int age) {
+	public BookCharacter(String name, String gender, int age, String description) {
 		this.name = name;
 		this.gender = gender;
 		if (age >= 0) this.age = age;
+		this.description = description;
 	}
 	
 	
@@ -60,6 +66,14 @@ public class Character {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public LinkList<Integer> getBooksAppearsIn() {
+		return booksAppearsIn;
+	}
+
+	public void setBooksAppearsIn(LinkList<Integer> booksAppearsIn) {
+		this.booksAppearsIn = booksAppearsIn;
 	}
 	
 	

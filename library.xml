@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_171" class="java.beans.XMLDecoder">
+<java version="1.8.0_191" class="java.beans.XMLDecoder">
  <object class="application.Library">
   <void property="savedBookHash">
    <object class="application.Hash">
@@ -60,16 +60,124 @@
        <object class="application.LinkList"/>
       </void>
       <void index="18">
-       <object class="application.LinkList"/>
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode0">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>2</int>
+            </void>
+            <void property="author">
+             <string>Herman Melville</string>
+            </void>
+            <void property="genre">
+             <string>Adventure</string>
+            </void>
+            <void property="numberOfPages">
+             <int>670</int>
+            </void>
+            <void property="plotDescription">
+             <string>A crew searches for the white whale</string>
+            </void>
+            <void property="title">
+             <string>Moby Dick</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>1851</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode0"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
       </void>
       <void index="19">
        <object class="application.LinkList"/>
       </void>
       <void index="20">
-       <object class="application.LinkList"/>
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode1">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>1</int>
+            </void>
+            <void property="author">
+             <string>F. Scott Fitzgerald</string>
+            </void>
+            <void property="genre">
+             <string>Drama</string>
+            </void>
+            <void property="numberOfPages">
+             <int>180</int>
+            </void>
+            <void property="plotDescription">
+             <string>A romance drama during the Jazz age</string>
+            </void>
+            <void property="title">
+             <string>The Great Gatsby</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>1925</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode1"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
       </void>
       <void index="21">
-       <object class="application.LinkList"/>
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode2">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>3</int>
+            </void>
+            <void property="author">
+             <string>Yann Martel</string>
+            </void>
+            <void property="genre">
+             <string>Fantasy</string>
+            </void>
+            <void property="numberOfPages">
+             <int>460</int>
+            </void>
+            <void property="plotDescription">
+             <string>A boy is shipwrecked and sails across the Pacific on a raft with a Bengal tiger</string>
+            </void>
+            <void property="title">
+             <string>Life of Pi</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>2001</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode2"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
       </void>
       <void index="22">
        <object class="application.LinkList"/>
@@ -83,6 +191,19 @@
      </array>
     </void>
    </object>
+  </void>
+  <void property="savedBookKeys">
+   <array class="int" length="3">
+    <void index="0">
+     <int>818</int>
+    </void>
+    <void index="1">
+     <int>1470</int>
+    </void>
+    <void index="2">
+     <int>846</int>
+    </void>
+   </array>
   </void>
   <void property="savedCharacterHash">
    <object class="application.Hash">
@@ -168,7 +289,7 @@
    </object>
   </void>
   <void property="savedCurrentBookID">
-   <int>1</int>
+   <int>4</int>
   </void>
   <void property="savedCurrentCharacterID">
    <int>1</int>

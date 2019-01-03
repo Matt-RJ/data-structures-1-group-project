@@ -3,7 +3,8 @@ package application;
 import java.util.Comparator;
 
 /**
- * This class 
+ * This class is used for sorting comparable objects using merge sort.
+ * 
  * @author Mantas Rajackas
  *
  * @param <C>
@@ -19,7 +20,6 @@ public class Sort<C> {
 	@SuppressWarnings("unchecked")
 	public Sort(Object[] sortArray) {
 		this.sortArray = new LinkNode[sortArray.length];
-		
 	}
 	
 	public LinkNode<C>[] getSortArray() {
@@ -60,19 +60,12 @@ public class Sort<C> {
 			mergeSort(xa,comp);
 			mergeSort(ya,comp);
 			
-			// Merges the sublists back into one
+			// Merges the sublists back into one, sorting them as it does so.
 			i=0;
 			int xai = 0;
 			int yai = 0;
 			while (xai < xa.length && yai<ya.length) {
-				
-				// TODO: REMOVE AFTER DEBUGGING
-				System.out.println("COMPARING THE FOLLOWING: ");
-				System.out.println("a = " + ((Book) xa[xai].getContents()).getTitle());
-				System.out.println("b = " + ((Book) ya[yai].getContents()).getTitle());
-				System.out.println(comp.compare(xa[xai], ya[yai]));
-				// TODO: REMOVE AFTER DEBUGGING
-				
+						
 				nodes[i++] = ( (comp.compare(xa[xai], ya[yai]) < 0) ? xa[xai++] : ya[yai++]);
 			}
 			while (xai < xa.length) {
@@ -83,12 +76,6 @@ public class Sort<C> {
 			}
 			
 		}
-			for (int i = 0; i < sortArray.length; i++) {
-			
-			System.out.println(((Book) sortArray[i].getContents()).getTitle());
-			
-			}
-			System.out.println("\n");
 		
 	}
 	
@@ -104,6 +91,19 @@ public class Sort<C> {
 		}
 		
 		return linkList;
+	}
+	
+	/**
+	 * Converts the array of LinkNodes into a primitive array
+	 * @return
+	 */
+	public int[] getSortArrayAsPrimitive() {
+		int[] primArray = new int[sortArray.length];
+		
+		for (int i = 0; i < sortArray.length; i++) {
+			primArray[i] = (int) sortArray[i].getContents();
+		}
+		return primArray;
 	}
 	
 }

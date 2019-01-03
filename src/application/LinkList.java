@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 /**
  * A doubly-linked list
+ * 
  * @author Mantas Rajackas
  *
  * @param <C>
