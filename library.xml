@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_191" class="java.beans.XMLDecoder">
+ <object class="application.Library">
+  <void property="savedBookCharacterHash">
+   <object class="application.Hash">
+    <void property="hashTable">
+     <array class="application.LinkList" length="25">
+      <void index="0">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="1">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="2">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="3">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="4">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="5">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="6">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="7">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="8">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="9">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="10">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="11">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="12">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="13">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="14">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="15">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="16">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="17">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="18">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="19">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="20">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="21">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="22">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="23">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="24">
+       <object class="application.LinkList"/>
+      </void>
+     </array>
+    </void>
+   </object>
+  </void>
+  <void property="savedBookHash">
+   <object class="application.Hash">
+    <void property="hashTable">
+     <array class="application.LinkList" length="25">
+      <void index="0">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="1">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="2">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="3">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="4">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="5">
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode0">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>2</int>
+            </void>
+            <void property="author">
+             <string>Me</string>
+            </void>
+            <void property="genre">
+             <string>Action</string>
+            </void>
+            <void property="numberOfPages">
+             <int>252</int>
+            </void>
+            <void property="plotDescription">
+             <string>Another fake book</string>
+            </void>
+            <void property="title">
+             <string>Beta</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>2019</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode0"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="7">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="8">
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode1">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>3</int>
+            </void>
+            <void property="author">
+             <string>Me</string>
+            </void>
+            <void property="genre">
+             <string>Reference</string>
+            </void>
+            <void property="numberOfPages">
+             <int>2562</int>
+            </void>
+            <void property="plotDescription">
+             <string>The final fake book</string>
+            </void>
+            <void property="title">
+             <string>Gamma</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>2020</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode1"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
+      </void>
+      <void index="9">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="10">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="11">
+       <object class="application.LinkList">
+        <void property="head">
+         <object class="application.LinkNode" id="LinkNode2">
+          <void property="contents">
+           <object class="application.Book">
+            <void property="ID">
+             <int>1</int>
+            </void>
+            <void property="author">
+             <string>Myself</string>
+            </void>
+            <void property="genre">
+             <string>Fiction</string>
+            </void>
+            <void property="numberOfPages">
+             <int>2465</int>
+            </void>
+            <void property="plotDescription">
+             <string>A fictional fake book</string>
+            </void>
+            <void property="title">
+             <string>Alpha</string>
+            </void>
+            <void property="yearOfPublication">
+             <int>2000</int>
+            </void>
+           </object>
+          </void>
+         </object>
+        </void>
+        <void property="last">
+         <object idref="LinkNode2"/>
+        </void>
+        <void property="size">
+         <int>1</int>
+        </void>
+       </object>
+      </void>
+      <void index="12">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="13">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="14">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="15">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="16">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="17">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="18">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="19">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="20">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="21">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="22">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="23">
+       <object class="application.LinkList"/>
+      </void>
+      <void index="24">
+       <object class="application.LinkList"/>
+      </void>
+     </array>
+    </void>
+   </object>
+  </void>
+  <void property="savedBookKeys">
+   <array class="int" length="3">
+    <void index="0">
+     <int>486</int>
+    </void>
+    <void index="1">
+     <int>380</int>
+    </void>
+    <void index="2">
+     <int>483</int>
+    </void>
+   </array>
+  </void>
+  <void property="savedCurrentBookCharacterID">
+   <int>1</int>
+  </void>
+  <void property="savedCurrentBookID">
+   <int>4</int>
+  </void>
+ </object>
+</java>
