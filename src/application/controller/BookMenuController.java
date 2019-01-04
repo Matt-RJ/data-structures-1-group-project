@@ -35,6 +35,10 @@ public class BookMenuController extends SuperController {
 	@FXML private TextField toDeleteBookIndex;
 	@FXML private Button deleteBookButton;
 	
+	// Searching
+	@FXML private TextField searchBookTitle;
+	@FXML private Button searchTitleButton;
+	
 	/**
 	 * Adds a book to the system.
 	 * @param e
@@ -144,4 +148,42 @@ public class BookMenuController extends SuperController {
 		}
 		printToInfoPanel(sortedBooks);
 	}
+	
+	public void searchByTitle(ActionEvent e) {
+		Library.sortBooksByTitle();
+		String searchedTitle = searchBookTitle.getText();
+		String searchedBooks = "Searching for \"" + searchedTitle + "\"\n\n";
+		
+		int foundBookKey = binarySearchTitles(Library.bookKeys, searchedTitle, 0, Library.bookKeys.length);
+		
+		Book foundBook = Library.bookHash.get(Library.bookKeys[foundBookKey]);
+		
+		if (foundBook != null) {
+			searchedBooks += foundBook.toString();
+
+		}
+		
+		printToInfoPanel(searchedBooks);
+		
+		
+	}
+	
+	public static int binarySearchTitles(int[] a, String sought, int lo, int hi) {
+		
+		if(lo > hi) return -1; // Sought isn't found
+		int middle=(lo+hi)/2;
+		
+		// Compares titles
+		int comp = Library.bookHash.get(a[middle]).getTitle().compareTo(sought);
+		
+		if (comp == 0) return middle; // Sought is found
+		else if (comp < 0) {
+			return binarySearchTitles(a,sought,lo,middle-1); // Search top half
+		}
+		else {
+			return binarySearchTitles(a,sought,middle+1,hi); // Search bottom half
+		}
+		
+	}
+
 }
